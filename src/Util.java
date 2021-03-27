@@ -1,0 +1,43 @@
+import java.time.LocalDate;
+
+public class Util {
+    public static void main(String[] args) {
+
+     Library csumb = new Library("CSUMB");
+        csumb.init("Library00.csv");
+        int numb = csumb.listBooks();
+        System.out.println("total books: " + numb);
+        numb = csumb.listReaders();
+        String userInput = "f";
+
+        System.out.println("total readers: " + numb );
+        csumb.listShelves(true);
+
+        Book bestServedCold = new Book("12345","Best Served Cold","GrimDark",235,"Joe Abercrombie",LocalDate.now());
+
+       // Book lovelove = new Book("12675","love","Romance",25,"Joercrombie",LocalDate.now());
+       // csumb.addBook(lovelove);
+
+        Shelf scifi = csumb.getShelf("sci-fi");
+        Shelf adventure = csumb.getShelf("Adventure");
+        Shelf romance = csumb.getShelf(4);
+        romance = csumb.getShelf("Romance");
+        System.out.println(romance);
+        csumb.addShelf("Romance");
+        romance = csumb.getShelf("Romance");
+        System.out.println(romance);
+       // scifi.addBook(bestServedCold);
+       // adventure.addBook(bestServedCold);
+        csumb.addBook(bestServedCold);
+        csumb.addShelf("GrimDark");
+        System.out.println("Done");
+        csumb.listReaders(true);
+        csumb.listShelves(true);
+        Reader drew = csumb.getReaderByCard(1);
+        csumb.checkOutBook(drew,bestServedCold);
+        csumb.listReaders(true);
+        csumb.returnBook(drew,csumb.getBookByISBN("42-w-87"));
+        csumb.returnBook(drew,csumb.getBookByISBN("42-w-87"));
+
+    }
+}
